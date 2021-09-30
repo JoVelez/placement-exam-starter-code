@@ -9,30 +9,15 @@ let cc = 0      // Chocolate Chip
 let sugar = 0   // Sugar Sprinkle
 
 // Local Storage
-let newValuegb = localStorage.getItem('gb-total')
-if (newValuegb) {
-    document.getElementById("qty-gb").textContent = (newValuegb);
-}
-let newValuecc = localStorage.getItem('cc-total')
-if (newValuecc) {
-    document.getElementById("qty-cc").textContent = (newValuecc);
-}
-let newValuesugar = localStorage.getItem('sugar-total')
-if (newValuesugar) {
-    document.getElementById("qty-sugar").textContent = (newValuesugar);
-}
-let totalCookies = localStorage.getItem('cookie-total')
-if (totalCookies) {
-    document.getElementById('qty-total').textContent = (totalCookies);
-}
+
+// Making adjustments
 
 // Gingerbread
 
 // Event listener for clicks on the "+" button for Ginger Bread cookies
 document.getElementById('add-gb').addEventListener('click', function() {
-    let newValuegb = ++gb;
+    let newValuegb =  ++gb;
     document.getElementById("qty-gb").textContent = (newValuegb);
-        localStorage.setItem('gb-total', newValuegb);
     let totalCookies = (gb + cc + sugar);
     document.getElementById("qty-total").textContent= (totalCookies);
         localStorage.setItem('cookie-total', totalCookies);
@@ -40,11 +25,16 @@ document.getElementById('add-gb').addEventListener('click', function() {
 // Event listener for clicks on the "-" button for Ginger Bread cookies
 document.getElementById('minus-gb').addEventListener('click', function() {
     let newValuegb = --gb;
+    if (gb < 0) {
+        gb = 0
+        document.getElementById("qty-gb").textContent = gb;
+    } else {
     document.getElementById("qty-gb").textContent = (newValuegb);
-        localStorage.setItem('gb-total', newValuegb);
     let totalCookies = (gb + cc + sugar);
+    if (totalCookies < 0) totalCookies = 0;
     document.getElementById("qty-total").textContent= (totalCookies);
         localStorage.setItem('cookie-total', totalCookies);
+        }
 }) 
 
 // Chocolate Chip
@@ -58,14 +48,19 @@ document.getElementById('add-cc').addEventListener('click', function() {
     document.getElementById("qty-total").textContent= (totalCookies);
         localStorage.setItem('cookie-total', totalCookies);
 })
+
 // Event listener for clicks on the "-" button for Chocolate Chip cookies
 document.getElementById('minus-cc').addEventListener('click', function() {
     let newValuecc = --cc;
-    document.getElementById("qty-cc").textContent = (newValuecc)
+    if (cc < 0) {
+        cc = 0
+        document.getElementById("qty-cc").textContent = cc;
+    } else { document.getElementById("qty-cc").textContent = (newValuecc)
         localStorage.setItem('cc-total', newValuecc);
     let totalCookies = (gb + cc + sugar);
     document.getElementById("qty-total").textContent= (totalCookies);
         localStorage.setItem('cookie-total', totalCookies);
+}
 })
 
  // Sugar Sprinkle
@@ -79,9 +74,14 @@ document.getElementById('minus-cc').addEventListener('click', function() {
     document.getElementById("qty-total").textContent= (totalCookies);
         localStorage.setItem('cookie-total', totalCookies);
 })
+
 // Event listener for clicks on the "-" button for Sugar Sprinkle cookies
  document.getElementById('minus-sugar').addEventListener('click', function() {
     let newValuesugar = --sugar;
+    if (sugar < 0) {
+        sugar = 0
+        document.getElementById("qty-sugar").textContent = sugar;
+    } else
     document.getElementById("qty-sugar").textContent = (newValuesugar)
         localStorage.setItem('sugar-total', newValuesugar);
     let totalCookies = (gb + cc + sugar);
