@@ -1,23 +1,90 @@
-// HINT: You can delete this console.log after you no longer need it!
-console.log('JavaScript code has loaded!')
+// Name replacement
+let yourName = "Joleena Velez" // HINT: Replace this with your own name!
+// Code to update name display 
+document.getElementById('credit').textContent = `Created by ${yourName}`
 
-// First, tell us your name
-let yourName = "Jane Doe" // HINT: Replace this with your own name!
-
-// We'll use these variables to track the counts of each cookie type
+// Counts of each cookie type
 let gb = 0      // Ginger bread
 let cc = 0      // Chocolate Chip
 let sugar = 0   // Sugar Sprinkle
 
-// Code to update name display 
-document.getElementById('credit').textContent = `Created by ${yourName}`
+// Local Storage
+let newValuegb = localStorage.getItem('gb-total')
+if (newValuegb) {
+    document.getElementById("qty-gb").textContent = (newValuegb);
+}
+let newValuecc = localStorage.getItem('cc-total')
+if (newValuecc) {
+    document.getElementById("qty-cc").textContent = (newValuecc);
+}
+let newValuesugar = localStorage.getItem('sugar-total')
+if (newValuesugar) {
+    document.getElementById("qty-sugar").textContent = (newValuesugar);
+}
+let totalCookies = localStorage.getItem('cookie-total')
+if (totalCookies) {
+    document.getElementById('qty-total').textContent = (totalCookies);
+}
+
+// Gingerbread
 
 // Event listener for clicks on the "+" button for Ginger Bread cookies
 document.getElementById('add-gb').addEventListener('click', function() {
-    // HINT: You can delete this console.log after you no longer need it!
-    console.log('Ginger bread + button was clicked!')
+    let newValuegb = ++gb;
+    document.getElementById("qty-gb").textContent = (newValuegb);
+        localStorage.setItem('gb-total', newValuegb);
+    let totalCookies = (gb + cc + sugar);
+    document.getElementById("qty-total").textContent= (totalCookies);
+        localStorage.setItem('cookie-total', totalCookies);
+}) 
+// Event listener for clicks on the "-" button for Ginger Bread cookies
+document.getElementById('minus-gb').addEventListener('click', function() {
+    let newValuegb = --gb;
+    document.getElementById("qty-gb").textContent = (newValuegb);
+        localStorage.setItem('gb-total', newValuegb);
+    let totalCookies = (gb + cc + sugar);
+    document.getElementById("qty-total").textContent= (totalCookies);
+        localStorage.setItem('cookie-total', totalCookies);
+}) 
 
-    // TODO: Write the code to be run when the "+" button for "Ginger Bread" is clicked
+// Chocolate Chip
+
+// Event listener for clicks on the "+" button for Chocolate Chip cookies
+document.getElementById('add-cc').addEventListener('click', function() {
+    let newValuecc = ++cc;
+    document.getElementById("qty-cc").textContent = (newValuecc);
+        localStorage.setItem('cc-total', newValuecc);
+    let totalCookies = (gb + cc + sugar);
+    document.getElementById("qty-total").textContent= (totalCookies);
+        localStorage.setItem('cookie-total', totalCookies);
+})
+// Event listener for clicks on the "-" button for Chocolate Chip cookies
+document.getElementById('minus-cc').addEventListener('click', function() {
+    let newValuecc = --cc;
+    document.getElementById("qty-cc").textContent = (newValuecc)
+        localStorage.setItem('cc-total', newValuecc);
+    let totalCookies = (gb + cc + sugar);
+    document.getElementById("qty-total").textContent= (totalCookies);
+        localStorage.setItem('cookie-total', totalCookies);
 })
 
-// TODO: Hook up event listeners for the rest of the buttons
+ // Sugar Sprinkle
+
+// Event listener for clicks on the "+" button for Sugar Sprinkle cookies
+ document.getElementById('add-sugar').addEventListener('click', function() {
+    let newValuesugar = ++sugar;
+    document.getElementById("qty-sugar").textContent = (newValuesugar)
+        localStorage.setItem('sugar-total', newValuesugar);
+    let totalCookies = (gb + cc + sugar);
+    document.getElementById("qty-total").textContent= (totalCookies);
+        localStorage.setItem('cookie-total', totalCookies);
+})
+// Event listener for clicks on the "-" button for Sugar Sprinkle cookies
+ document.getElementById('minus-sugar').addEventListener('click', function() {
+    let newValuesugar = --sugar;
+    document.getElementById("qty-sugar").textContent = (newValuesugar)
+        localStorage.setItem('sugar-total', newValuesugar);
+    let totalCookies = (gb + cc + sugar);
+    document.getElementById("qty-total").textContent= (totalCookies);
+        localStorage.setItem('cookie-total', totalCookies);
+})
